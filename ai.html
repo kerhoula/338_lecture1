@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anna in Dublin | 3 Week Travel Blog</title>
+  <style>
+    :root {
+      --green: #0f3d2e;
+      --light-green: #dff3e8;
+      --cream: #fffaf0;
+      --gold: #d8a441;
+      --blue: #d9ecff;
+      --text: #1f1f1f;
+      --muted: #666;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--gold);
+      color: #000;
+      padding: 10px 14px;
+      border-radius: 8px;
+      z-index: 1000;
+      font-weight: bold;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    header {
+      background: linear-gradient(rgba(15, 61, 46, 0.85), rgba(15, 61, 46, 0.85)),
+        url("https://images.unsplash.com/photo-1549918864-48ac978761a4?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 32px 20px 80px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      max-width: 1100px;
+      margin: 0 auto 70px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 14px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      background: var(--gold);
+      color: #000;
+      outline: none;
+    }
+
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      line-height: 1;
+      margin: 0 0 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      padding: 12px 18px;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 2px solid var(--gold);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: white;
+      border-color: white;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 42px 20px;
+    }
+
+    section {
+      margin-bottom: 70px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: var(--green);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card {
+      background: var(--light-green);
+      border: 2px solid #b8dfc9;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: white;
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      color: var(--green);
+    }
+
+    .timeline-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+    }
+
+    .day-list {
+      position: sticky;
+      top: 20px;
+      align-self: start;
+      background: var(--green);
+      color: white;
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .day-list h3 {
+      margin-top: 0;
+    }
+
+    .day-list a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .day-list a:hover,
+    .day-list a:focus {
+      background: var(--gold);
+      color: #000;
+      outline: none;
+    }
+
+    .day-page {
+      border-left: 6px solid var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .day-page h3 {
+      font-size: 1.6rem;
+      color: var(--green);
+      margin-top: 0;
+    }
+
+    .attraction-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .attraction {
+      background: #f8f8f8;
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid #e3e3e3;
+    }
+
+    .attraction h4 {
+      margin: 0 0 6px;
+      color: var(--green);
+    }
+
+    .rating-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+
+    .rating {
+      position: relative;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: bold;
+      cursor: pointer;
+      background: var(--blue);
+      color: #14324a;
+    }
+
+    .rating.budget {
+      background: #ffe9bf;
+      color: #533500;
+    }
+
+    .rating:hover .popup,
+    .rating:focus .popup {
+      display: block;
+    }
+
+    .popup {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 42px;
+      min-width: 230px;
+      background: #111;
+      color: white;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: normal;
+      z-index: 10;
+      box-shadow: var(--shadow);
+      text-align: left;
+    }
+
+    .map-box {
+      background: var(--light-green);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .map-visual {
+      min-height: 420px;
+      background: linear-gradient(135deg, #edf8f1, #cce8dc);
+      border: 3px solid white;
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .river {
+      position: absolute;
+      width: 120%;
+      height: 90px;
+      background: rgba(74, 151, 191, 0.55);
+      transform: rotate(-18deg);
+      top: 170px;
+      left: -40px;
+      border-radius: 999px;
+    }
+
+    .pin {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: var(--green);
+      color: white;
+      border: 4px solid white;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .pin:hover,
+    .pin:focus {
+      background: var(--gold);
+      color: #000;
+      outline: 3px solid #000;
+    }
+
+    .pin span {
+      display: none;
+      position: absolute;
+      top: 52px;
+      background: white;
+      color: var(--text);
+      padding: 10px;
+      border-radius: 10px;
+      width: 180px;
+      box-shadow: var(--shadow);
+      font-size: 0.9rem;
+      z-index: 20;
+    }
+
+    .pin:hover span,
+    .pin:focus span {
+      display: block;
+    }
+
+    .converter {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      align-items: end;
+      margin-top: 18px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .result-box {
+      background: var(--green);
+      color: white;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      min-height: 48px;
+    }
+
+    footer {
+      background: var(--green);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    @media (max-width: 850px) {
+      .intro-grid,
+      .timeline-layout,
+      .attraction-grid,
+      .converter {
+        grid-template-columns: 1fr;
+      }
+
+      .day-list {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <nav aria-label="Main navigation">
+      <div class="logo">Anna in Dublin</div>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#days">Daily Blog</a></li>
+        <li><a href="#map">Map Timeline</a></li>
+        <li><a href="#budget">Budget Tool</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero">
+      <h1>Three Weeks in Dublin</h1>
+      <p>A chronological travel blog documenting where I went, what I learned, how accessible each place felt, and how much it cost along the way.</p>
+      <div class="hero-buttons">
+        <a class="button" href="#days">Start Reading</a>
+        <a class="button secondary" href="#map">See My Route</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="overview">
+      <h2 class="section-title">Trip Overview</h2>
+      <div class="intro-grid">
+        <article class="card">
+          <h3>About this blog</h3>
+          <p>This site is designed as a personal Dublin travel journal. Each day acts like its own page, with notes about attractions, food, transportation, accessibility, and budget. The goal is to make the trip easy to follow for friends, family, and future students planning a similar experience.</p>
+          <p>Because accessibility is a major part of my trip, every attraction includes a rating and a short explanation. Budget ratings are included too, because studying abroad can get expensive fast.</p>
+        </article>
+
+        <aside class="card stat-card">
+          <h3>Trip Snapshot</h3>
+          <div class="stats">
+            <div class="stat"><strong>21</strong>Days</div>
+            <div class="stat"><strong>€€</strong>Budget</div>
+            <div class="stat"><strong>A11y</strong>Focus</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="days">
+      <h2 class="section-title">Daily Travel Blog</h2>
+      <p>Click the day links to jump through the trip. Hover or tab onto each rating to see why I gave that score.</p>
+
+      <div class="timeline-layout">
+        <aside class="day-list" aria-label="Day navigation">
+          <h3>Jump to a Day</h3>
+          <a href="#day1">Day 1: Arrival + GPO</a>
+          <a href="#day2">Day 2: Trinity + Cafés</a>
+          <a href="#day3">Day 3: Museums</a>
+          <a href="#day4">Day 4: Parks + Markets</a>
+          <a href="#day5">Day 5: Coastal Trip</a>
+        </aside>
+
+        <div>
+          <article class="card day-page" id="day1">
+            <h3>Day 1: First Walk Through Dublin</h3>
+            <p>Today was mostly about getting settled, walking through the city center, and visiting the General Post Office. I liked how the GPO felt both historical and central to everyday city life.</p>
+
+            <div class="attraction-grid">
+              <div class="attraction">
+                <h4>General Post Office</h4>
+                <p>Historic building on O’Connell Street and one of the first places I visited.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 4/5
+                    <span class="popup">Mostly accessible from the main entrance area. Some exhibits or crowded areas may be harder for wheelchair users or people with mobility needs.</span>
+                  </button>
+                  <button class="rating budget">Budget: 5/5
+                    <span class="popup">Great budget stop because viewing the exterior is free. Paid exhibits would lower the score slightly.</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="attraction">
+                <h4>O’Connell Street Walk</h4>
+                <p>A busy first walk with monuments, shops, buses, and a lot of city energy.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 3/5
+                    <span class="popup">Wide sidewalks in many areas, but crowds, construction, and uneven pavement can make navigation harder.</span>
+                  </button>
+                  <button class="rating budget">Budget: 5/5
+                    <span class="popup">Free to explore, unless you stop for food, coffee, or shopping.</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card day-page" id="day2">
+            <h3>Day 2: Trinity College + Coffee Stops</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. I spent the morning exploring campus spaces and the afternoon trying a café nearby.</p>
+
+            <div class="attraction-grid">
+              <div class="attraction">
+                <h4>Trinity College</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 3/5
+                    <span class="popup">Some paved routes are accessible, but older paths and crowds may create barriers.</span>
+                  </button>
+                  <button class="rating budget">Budget: 4/5
+                    <span class="popup">Walking around campus is free. Some exhibits or library visits may require tickets.</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="attraction">
+                <h4>Local Café</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 2/5
+                    <span class="popup">Small indoor layout and narrow aisles may make it difficult for wheelchair users.</span>
+                  </button>
+                  <button class="rating budget">Budget: 3/5
+                    <span class="popup">Coffee was affordable, but pastries and meals added up quickly.</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card day-page" id="day3">
+            <h3>Day 3: Museum Day</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. This day focused on indoor attractions and learning more about Irish history and design.</p>
+
+            <div class="attraction-grid">
+              <div class="attraction">
+                <h4>National Museum</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 4/5
+                    <span class="popup">Clear indoor paths and seating areas helped, though some older sections may be less direct.</span>
+                  </button>
+                  <button class="rating budget">Budget: 5/5
+                    <span class="popup">Many public museums are low-cost or free, making this a strong budget-friendly activity.</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="attraction">
+                <h4>Gallery Stop</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 4/5
+                    <span class="popup">Elevators, open rooms, and quiet areas made this feel more accessible than crowded outdoor stops.</span>
+                  </button>
+                  <button class="rating budget">Budget: 4/5
+                    <span class="popup">Reasonable cost, especially if using a student discount.</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card day-page" id="day4">
+            <h3>Day 4: Parks + Markets</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. I spent more time outside and compared how different public spaces felt to move through.</p>
+
+            <div class="attraction-grid">
+              <div class="attraction">
+                <h4>St. Stephen’s Green</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 4/5
+                    <span class="popup">Paved paths and benches make this easier for many visitors, but weather can affect comfort.</span>
+                  </button>
+                  <button class="rating budget">Budget: 5/5
+                    <span class="popup">Free public park, making it one of the best budget stops.</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="attraction">
+                <h4>Food Market</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 3/5
+                    <span class="popup">Fun but crowded. Lines, noise, and tight vendor spacing may make it harder for some visitors.</span>
+                  </button>
+                  <button class="rating budget">Budget: 2/5
+                    <span class="popup">Easy to overspend because small purchases add up quickly.</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card day-page" id="day5">
+            <h3>Day 5: Coastal Day Trip</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. This placeholder day can become a trip to Howth, Bray, Dún Laoghaire, or another coastal stop.</p>
+
+            <div class="attraction-grid">
+              <div class="attraction">
+                <h4>Howth Cliff Walk</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 1/5
+                    <span class="popup">Beautiful but difficult for many mobility needs because of uneven ground, slopes, and narrow paths.</span>
+                  </button>
+                  <button class="rating budget">Budget: 4/5
+                    <span class="popup">The walk itself is free, but transportation and food increase the cost.</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="attraction">
+                <h4>Harbor Lunch</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="rating-row">
+                  <button class="rating">Accessibility: 3/5
+                    <span class="popup">Depends heavily on the restaurant. Outdoor seating may be easier than small indoor spaces.</span>
+                  </button>
+                  <button class="rating budget">Budget: 2/5
+                    <span class="popup">A sit-down lunch near tourist areas can be more expensive.</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="map">
+      <h2 class="section-title">Interactive Map Timeline</h2>
+      <div class="map-box">
+        <p>This is a simplified map-style timeline. Each pin represents a day or major stop. Hover or tab onto a pin to see what happened there.</p>
+        <div class="map-visual" aria-label="Simplified interactive Dublin trip map">
+          <div class="river" aria-hidden="true"></div>
+          <button class="pin" style="left: 48%; top: 42%;">1<span>Day 1: General Post Office + O’Connell Street</span></button>
+          <button class="pin" style="left: 58%; top: 58%;">2<span>Day 2: Trinity College + café exploring</span></button>
+          <button class="pin" style="left: 38%; top: 62%;">3<span>Day 3: Museums and indoor history stops</span></button>
+          <button class="pin" style="left: 66%; top: 72%;">4<span>Day 4: Parks, markets, and walking routes</span></button>
+          <button class="pin" style="left: 82%; top: 28%;">5<span>Day 5: Coastal day trip placeholder</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="budget">
+      <h2 class="section-title">Euro to USD Budget Converter</h2>
+      <div class="card">
+        <p>Use this simple converter to estimate attraction, food, and transit costs. This uses a fake class-project rate of <strong>€1 = $1.08</strong>. Update the number in the JavaScript if you want a real rate later.</p>
+        <div class="converter">
+          <div>
+            <label for="euros">Cost in Euros</label>
+            <input id="euros" type="number" min="0" step="0.01" placeholder="Example: 12" />
+          </div>
+          <div>
+            <button class="button" onclick="convertMoney()">Convert</button>
+          </div>
+          <div class="result-box" id="result">$0.00 USD</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Anna in Dublin | A 3-week travel blog about accessibility, budget, and student travel.</p>
+  </footer>
+
+  <script>
+    function convertMoney() {
+      const euros = document.getElementById("euros").value;
+      const rate = 1.08;
+      const dollars = euros * rate;
+      document.getElementById("result").textContent = `$${dollars.toFixed(2)} USD`;
+    }
+  </script>
+</body>
+</html>
+
